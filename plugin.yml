@@ -1,0 +1,6 @@
+name: BlockWorlds
+version: 1.0
+api-version: 1.16
+author: GibMirRechte
+main: de.blockworlds.main.BlockWorlds
+commands:
