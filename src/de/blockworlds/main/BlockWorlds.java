@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import de.blockworlds.listener.ChatListener;
+import de.blockworlds.listener.JoinListener;
 import de.blockworlds.listener.WorldChangeListener;
 
 public class BlockWorlds extends JavaPlugin {
@@ -26,6 +27,7 @@ public class BlockWorlds extends JavaPlugin {
 			
 			Bukkit.getPluginManager().registerEvents(new WorldChangeListener(), this);
 			Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
+			Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
 			
 			System.out.println(" ");
 			System.out.println(" ");
