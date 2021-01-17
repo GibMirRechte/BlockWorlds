@@ -7,6 +7,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 
+import de.blockworlds.main.BlockWorlds;
+
 public class WorldChangeListener implements Listener {
 	
 	File file = new File("plugins//BlockWorlds//worlds.yml");
@@ -14,7 +16,7 @@ public class WorldChangeListener implements Listener {
 	
 	@EventHandler
 	public void onWorldChange(PlayerChangedWorldEvent event) {
-		if(worlds.getStringList("BlockedWorlds").contains(event.getPlayer().getWorld().getName())) {
+		if(BlockWorlds.blocked_worlds.contains(event.getPlayer().getWorld().getName())) {
 			event.getPlayer().teleport(event.getFrom().getSpawnLocation());
 			event.getPlayer().sendMessage("§7[§cBlockWorlds§7] §cThis world is blocked.");
 			event.getPlayer().sendMessage("§7[§cBlockWorlds§7] §cYou have been send back!");
