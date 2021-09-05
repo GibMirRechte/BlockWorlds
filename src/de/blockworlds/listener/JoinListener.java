@@ -14,14 +14,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class JoinListener implements Listener {
 
-	   private String url = "https://api.spigotmc.org/legacy/update.php?resource=";
-	    private String id = "87743";
-
-	    private boolean isAvailable;
+	    public boolean isAvailable;
 
 	    @EventHandler
 	    public void on(PlayerJoinEvent event) {
-	    	check();
 	        if(event.getPlayer().hasPermission("bw.perm.notification")) {
 	            if(isAvailable) {
 	            	event.getPlayer().sendMessage(" ");
@@ -30,33 +26,4 @@ public class JoinListener implements Listener {
 	            }
 	            }
 	        }
-
-	    public void check() {
-	        isAvailable = checkUpdate();
-	    }
-
-	    private boolean checkUpdate() {
-	        System.out.println("§7[§cBlockWorlds§7] §aChecking for updates...");
-	        try {
-	            String localVersion = Bukkit.getPluginManager().getPlugin("BlockWorlds").getDescription().getVersion();
-	            HttpsURLConnection connection = (HttpsURLConnection) new URL(url + id).openConnection();
-	            connection.setRequestMethod("GET");
-	            String raw = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
-
-	            String remoteVersion;
-	            if(raw.contains("-")) {
-	                remoteVersion = raw.split("-")[0].trim();
-	            } else {
-	                remoteVersion = raw;
-	            }
-
-	            if(!localVersion.equalsIgnoreCase(remoteVersion))
-	                return true;
-
-	        } catch (IOException e) {
-	            return false;
-	        }
-	        return false;
-	    }
-
 }

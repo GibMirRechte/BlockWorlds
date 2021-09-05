@@ -13,7 +13,7 @@ public class ChatListener implements Listener {
 				e.getPlayer().sendMessage("§8§m--------§c§o BlockWorlds §8§m--------");
 				e.getPlayer().sendMessage(" ");
 				e.getPlayer().sendMessage("§7Developer: §eGibMirRechte");
-				e.getPlayer().sendMessage("§7Discord: §bhttps://discord.gg/yhBX6KT");
+				e.getPlayer().sendMessage("§7Discord: §bhttps://discord.gg/cbcWksB");
 				e.getPlayer().sendMessage(" ");
 				e.getPlayer().sendMessage("§8§m--------§c§o BlockWorlds §8§m--------");
 		}

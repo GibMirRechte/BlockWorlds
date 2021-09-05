@@ -1,7 +1,10 @@
 package de.blockworlds.main;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import de.blockworlds.listener.ChatListener;
 import de.blockworlds.listener.JoinListener;
 import de.blockworlds.listener.WorldChangeListener;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class BlockWorlds extends JavaPlugin {
 	
@@ -44,8 +49,39 @@ public class BlockWorlds extends JavaPlugin {
 		System.out.println(" ");
 		System.out.println("Author: GibMirRechte");
 		System.out.println("Version: " + Bukkit.getPluginManager().getPlugin("BlockWorlds").getDescription().getVersion());
-		System.out.println("Discord: yhBX6KT");
+		System.out.println("Discord: cbcWksB");
 		System.out.println(" ");
 		System.out.println("========== BlockWorlds ==========");
+	}
+
+	public void check() {
+		JoinListener joinListener = new JoinListener();
+		joinListener.isAvailable = checkUpdate();
+	}
+
+	public boolean checkUpdate() {
+		String url = "https://api.spigotmc.org/legacy/update.php?resource=";
+		String id = "87743";
+		System.out.println("§7[§cBlockWorlds§7] §aChecking for updates...");
+		try {
+			String localVersion = Bukkit.getPluginManager().getPlugin("BlockWorlds").getDescription().getVersion();
+			HttpsURLConnection connection = (HttpsURLConnection) new URL(url + id).openConnection();
+			connection.setRequestMethod("GET");
+			String raw = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
+
+			String remoteVersion;
+			if(raw.contains("-")) {
+				remoteVersion = raw.split("-")[0].trim();
+			} else {
+				remoteVersion = raw;
+			}
+
+			if(!localVersion.equalsIgnoreCase(remoteVersion))
+				return true;
+
+		} catch (IOException e) {
+			return false;
+		}
+		return false;
 	}
 }
